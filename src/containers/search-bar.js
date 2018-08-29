@@ -4,7 +4,11 @@ import {bindActionCreators} from "redux"
 import {getCountries} from "../actions/index"
 
 class SearchBar extends Component{
-
+ 
+    constructor(props){
+        super(props)
+        this.state = {selectedCountry:this.props.defaultCountry}
+    }
     componentWillMount () {
         this.props.getCountries()
     }
@@ -13,9 +17,9 @@ class SearchBar extends Component{
         const{countries} = this.props
         if(countries){
             return (
-                <select className="col-lg-12 input-group">
+                <select value = {this.state.defaultCountry} onChange={(e)=> this.search(e)} className="col-lg-10 input-group">
                 {
-                    countries.map((country)=>{
+                    countries.map((country)=> {
                         return <option key={country} value={country}>{country}</option>
                     })
                 }
@@ -26,18 +30,21 @@ class SearchBar extends Component{
         }
     }
 
+    search(e){
+        this.setState({selectedCountry:e.taget.value})
+    }
 
         render (){
             return (
-                <div>
-
+                <div className="search-bar">
+                        {this.renderSelectBox()}
                 </div>
             )
         }
     }
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
     return{
-        countrie: state.countries
+        countries: state.countries
     }
 }
 
