@@ -9,6 +9,24 @@ class SearchBar extends Component{
         this.props.getCountries()
     }
 
+    renderSelectBox(){
+        const{countries} = this.props
+        if(countries){
+            return (
+                <select className="col-lg-12 input-group">
+                {
+                    countries.map((country)=>{
+                        return <option key={country} value={country}>{country}</option>
+                    })
+                }
+                </select>
+            )
+        }else{
+            return <div>No country found</div>
+        }
+    }
+
+
         render (){
             return (
                 <div>
