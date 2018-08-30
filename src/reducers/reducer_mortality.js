@@ -14,7 +14,7 @@ export default function (state=[],action){
              ]
              
         // case ERROR_GET_MORTALITY : 
-        //     return action.errors
+          //   return action.errors
     }
     return state
 }
