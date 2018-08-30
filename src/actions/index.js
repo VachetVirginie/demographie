@@ -13,9 +13,7 @@ export function fetchMortality(country){
     return function (dispatch) {
         return axios(`http://api.population.io:80/1.0/mortality-distribution/${country}/male/25/today/`).then(function(responseMale){
              axios(`http://api.population.io:80/1.0/mortality-distribution/${country}/female/25/today/`).then(function(responseFemale){
-                console.log(responseMale)
-                console.log(responseFemale)    
-             dispatch({type : GET_MORTALITY,
+                   dispatch({type : GET_MORTALITY,
                        payload:{
                            country:country,
                            male:responseMale.data.mortality_distribution,
